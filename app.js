@@ -41,9 +41,18 @@ app.get('/pokemons', (req, res) => {
   ];
   res.json(pokemons);
 });
+app.post('/series', (req, res) => {
+  const series = [
+      { id: 1, name: "Breaking Bad" },
+      { id: 2, name: "Stranger Things" },
+      { id: 3, name: "The Office" }
+  ];
+  res.json(series);
+});
 
-// Inicia o servidor
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => {
+  console.log(`Servidor rodando na porta ${port}!`);
+});
 
 // Conteúdo HTML que será enviado na resposta
 const html = `
