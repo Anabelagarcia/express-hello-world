@@ -2,24 +2,37 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.use(express.json())
-app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => res.type('html').send(html));
+// Rota principal que envia HTML
+app.get("/", (req, res) => {
+  // Define o tipo da resposta como HTML
+  res.type('html').send(html);
+});
 
+// Rota de requisição
 app.get('/req', (req, res) => {
-    console.log("Just got a request!")
-    res.send('Yo!')
-})
+  console.log("Just got a request!");
+  res.send('Yo!');
+});
 
+// Rota para retornar seu nome completo
+app.get('/meunome', (req, res) => {
+  res.send("Meu nome é Anabela Garcia Matos Domingues");
+});
+
+// Inicia o servidor
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
-
+// Conteúdo HTML que será enviado na resposta
 const html = `
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
   <head>
-    <title>Hello from Render!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello from Express!</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
       setTimeout(() => {
@@ -32,36 +45,29 @@ const html = `
       }, 500);
     </script>
     <style>
-      @import url("https://p.typekit.net/p.css?s=1&k=vnd5zic&ht=tk&f=39475.39476.39477.39478.39479.39480.39481.39482&a=18673890&app=typekit&e=css");
-      @font-face {
-        font-family: "neo-sans";
-        src: url("https://use.typekit.net/af/00ac0a/00000000000000003b9b2033/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff2"), url("https://use.typekit.net/af/00ac0a/00000000000000003b9b2033/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff"), url("https://use.typekit.net/af/00ac0a/00000000000000003b9b2033/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("opentype");
-        font-style: normal;
-        font-weight: 700;
-      }
-      html {
-        font-family: neo-sans;
-        font-weight: 700;
-        font-size: calc(62rem / 16);
-      }
       body {
-        background: white;
+        font-family: 'Arial', sans-serif;
+        background-color: #f0f0f0;
+        text-align: center;
+        padding: 20px;
+      }
+      h1 {
+        color: #333;
       }
       section {
         border-radius: 1em;
         padding: 1em;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-right: -50%;
-        transform: translate(-50%, -50%);
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: inline-block;
       }
     </style>
   </head>
   <body>
     <section>
-      Hello Express API 
+      <h1>Hello Express API!</h1>
+      <p>Bem-vindo ao seu servidor Express com animações de confetes! 🎉</p>
     </section>
   </body>
 </html>
-`
+`;
