@@ -21,6 +21,10 @@ app.get('/req', (req, res) => {
 app.get('/meunome', (req, res) => {
   res.send("Meu nome é Anabela Garcia Matos Domingues");
 });
+// Rota tico
+app.get('/tico', (req, res) => {
+  res.send("teco");
+});
 
 // Inicia o servidor
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
